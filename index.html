@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Perkalian 🤖</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+}
+
+.ai-box{
+    background:#fff;
+    width:90%;
+    max-width:400px;
+    padding:25px;
+    border-radius:16px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+    animation:fadeIn 1s ease;
+}
+
+.ai-box h1{
+    margin-bottom:10px;
+}
+
+.ai-box p{
+    color:#555;
+    font-size:14px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border-radius:10px;
+    border:2px solid #ddd;
+    font-size:16px;
+    outline:none;
+}
+
+button{
+    margin-top:15px;
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#2a5298;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1e3c72;
+    transform:scale(1.05);
+}
+
+.result{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    min-height:30px;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+
+<div class="ai-box">
+    <h1>AI Perkalian 🤖</h1>
+    <p>Tulis soal perkalian (contoh: 6 x 7)</p>
+
+    <input type="text" id="question" placeholder="Contoh: 8 x 9">
+    <button onclick="jawab()">Jawab</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+function jawab(){
+    const soal = document.getElementById("question").value.toLowerCase();
+    const hasil = document.getElementById("result");
+
+    // Ambil angka
+    const angka = soal.match(/\d+/g);
+
+    if(!angka || angka.length < 2){
+        hasil.innerHTML = "❌ Soal tidak valid";
+        hasil.style.color = "red";
+        return;
+    }
+
+    const a = parseInt(angka[0]);
+    const b = parseInt(angka[1]);
+    const jawaban = a * b;
+
+    hasil.style.color = "green";
+    hasil.innerHTML = `🤖 ${a} × ${b} = <b>${jawaban}</b>`;
+}
+</script>
+
+</body>
+</html>
